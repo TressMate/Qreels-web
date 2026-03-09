@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  PlayCircle, 
-  Trophy, 
-  Shield, 
-  Timer, 
-  Settings, 
-  TrendingUp, 
-  ChevronDown, 
-  CheckCircle2, 
-  Upload, 
-  BarChart3, 
+import {
+  PlayCircle,
+  Trophy,
+  Shield,
+  Timer,
+  Settings,
+  TrendingUp,
+  ChevronDown,
+  CheckCircle2,
+  Upload,
+  BarChart3,
   CircleDollarSign,
   Smartphone,
   Sparkles,
@@ -24,7 +24,10 @@ import {
   AlertTriangle,
   Verified,
   Users,
-  HelpCircle
+  HelpCircle,
+  ChevronLeft,
+  ChevronRight,
+  Quote
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -38,7 +41,7 @@ const Section = ({ children, className = "", id = "" }: { children: React.ReactN
 );
 
 const Card = ({ children, className = "", ...props }: { children: React.ReactNode, className?: string, [key: string]: any }) => (
-  <motion.div 
+  <motion.div
     whileHover={{ y: -5 }}
     className={`bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
     {...props}
@@ -51,7 +54,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border border-slate-100 rounded-2xl bg-white overflow-hidden mb-4">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between p-6 text-left font-bold hover:bg-slate-50 transition-colors"
       >
@@ -60,7 +63,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
       </button>
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -76,15 +79,52 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
   );
 };
 
+const founders = [
+  {
+    name: "Vijay Patidar",
+    role: "Founder & CEO",
+    quote: "Driving the vision of QReels while building scalable systems that make learning engaging and meaningful for children.",
+    avatar: "VP"
+  },
+  {
+    name: "Rahul Kushwah",
+    role: "Co-Founder & Head of Backend Engineering",
+    quote: "Designing powerful backend architecture, APIs, and AI-driven data systems that make QReels scalable and intelligent.",
+    avatar: "RK"
+  },
+  {
+    name: "Varun Patidar",
+    role: "Co-Founder & Frontend Lead",
+    quote: "Building high-performance frontend architecture with React to ensure a smooth and engaging user experience.",
+    avatar: "VP"
+  },
+  {
+    name: "Chandra Prakash Kushwah",
+    role: "Co-Founder & Frontend Manager",
+    quote: "Coordinating frontend development and ensuring high-quality UI implementation across the platform.",
+    avatar: "CP"
+  },
+  {
+    name: "Yogita Chouhan",
+    role: "Co-Founder & UI/UX Designer",
+    quote: "Crafting intuitive user experiences and beautiful interfaces that make learning fun and accessible for children.",
+    avatar: "YC"
+  }
+];
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const prevSlide = () => setCurrentSlide((p) => (p - 1 + founders.length) % founders.length);
+  const nextSlide = () => setCurrentSlide((p) => (p + 1) % founders.length);
 
   return (
     <div className="min-h-screen bg-background-light selection:bg-primary/20 selection:text-primary">
@@ -99,13 +139,19 @@ export default function App() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            {['About', 'Features', 'Parents', 'Creators'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
+            {[
+              { label: 'Home', href: '#home' },
+              { label: 'Features', href: '#features' },
+              { label: 'Parents', href: '#parents' },
+              { label: 'Creators', href: '#creators' },
+              { label: 'About Us', href: '#about-us' },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
                 className="text-sm font-semibold text-slate-600 hover:text-primary transition-colors"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </nav>
@@ -116,7 +162,7 @@ export default function App() {
             </button>
           </div>
 
-          <button 
+          <button
             className="md:hidden p-2 text-slate-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -127,20 +173,26 @@ export default function App() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-100 p-6 flex flex-col gap-4 shadow-xl"
             >
-              {['About', 'Features', 'Parents', 'Creators'].map((item) => (
-                <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
+              {[
+                { label: 'Home', href: '#home' },
+                { label: 'Features', href: '#features' },
+                { label: 'Parents', href: '#parents' },
+                { label: 'Creators', href: '#creators' },
+                { label: 'About Us', href: '#about-us' },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
                   className="text-lg font-bold text-slate-900"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
               <button className="bg-primary text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-primary/20 mt-2">
@@ -153,9 +205,9 @@ export default function App() {
 
       <main>
         {/* Hero Section */}
-        <Section id="about" className="pt-32 lg:pt-48 overflow-hidden">
+        <Section id="home" className="pt-32 lg:pt-48 overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -181,7 +233,7 @@ export default function App() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -189,13 +241,13 @@ export default function App() {
             >
               <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl"></div>
               <div className="relative mx-auto w-full max-w-[320px] aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center" 
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzfJOpDIyJf0QNZeSY4xqoJm0w1wAPRayqd70hhyOSy1W7657MVWpFSjE53IPeu0bzuL6pTHBqPINCM4pfAduoOj1fNW2ioEJgz8Id4k72tExc7D8BwG484ZsfqDVVyhWeYF1kFo39vS9BxE0mSCNXaPLR8kJKpeS4nUc4hhj3q6Dxd3i7KEEGXYW8RLgo3DwaBezDdvC9jhAtKSnXTq3_VGQY2qVEZqbpYYTQYOL0XhpgnRk3_ZZv3ZOwAJuhtcz8BPwSoEnQ5tQ')" }}
                 ></div>
-                
+
                 {/* Floating UI Elements */}
-                <motion.div 
+                <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
@@ -211,8 +263,8 @@ export default function App() {
                     </div>
                   </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 1.5, duration: 0.5 }}
@@ -255,7 +307,7 @@ export default function App() {
               <p className="text-xl text-slate-600">We convert addictive scrolling into active learning through curated, short-form educational content.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 w-full">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="flex gap-6 items-start p-8 bg-primary/5 rounded-2xl border border-primary/10"
               >
@@ -267,7 +319,7 @@ export default function App() {
                   <p className="text-slate-600">Science, math, history, and life skills, all vetted by educational experts for safety and accuracy.</p>
                 </div>
               </motion.div>
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="flex gap-6 items-start p-8 bg-primary/5 rounded-2xl border border-primary/10"
               >
@@ -293,7 +345,7 @@ export default function App() {
               { icon: HelpCircle, title: "2. Interact", desc: "Complete a mini 3-question quiz after every video to reinforce knowledge." },
               { icon: Trophy, title: "3. Grow", desc: "Earn badges, XP, and build your knowledge streak to unlock new topics." }
             ].map((step, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -357,7 +409,7 @@ export default function App() {
           <div className="bg-gradient-to-br from-primary to-blue-900 rounded-[3rem] p-12 lg:p-20 text-white overflow-hidden relative shadow-2xl">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-slate-900/20 rounded-full blur-3xl"></div>
-            
+
             <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
               <div>
                 <h2 className="text-4xl lg:text-5xl font-black mb-8 leading-tight">AI-Powered Personalized Learning</h2>
@@ -379,7 +431,7 @@ export default function App() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="aspect-square bg-white rounded-2xl flex flex-col items-center justify-center text-primary p-6 text-center shadow-2xl"
                 >
@@ -387,7 +439,7 @@ export default function App() {
                   <p className="font-black text-4xl">500+</p>
                   <p className="text-xs uppercase font-bold opacity-70 tracking-widest mt-2">Badges</p>
                 </motion.div>
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="aspect-square bg-slate-900 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center shadow-2xl"
                 >
@@ -429,18 +481,97 @@ export default function App() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-black mb-12 text-center text-slate-900">Frequently Asked Questions</h2>
             <div className="space-y-4">
-              <FAQItem 
-                question="Is QReels really safe for my 6-year-old?" 
+              <FAQItem
+                question="Is QReels really safe for my 6-year-old?"
                 answer="Yes! QReels is designed specifically for children aged 5-13. We have no public comments, no direct messaging, and every single video is reviewed by a human moderator before it goes live."
               />
-              <FAQItem 
-                question="How do the mini-quizzes work?" 
+              <FAQItem
+                question="How do the mini-quizzes work?"
                 answer="At the end of a video, an interactive card appears with 3 simple multiple-choice questions. Answering them correctly earns Q-Coins and helps our AI understand the child's learning progress."
               />
-              <FAQItem 
-                question="Can I limit my child's daily usage?" 
+              <FAQItem
+                question="Can I limit my child's daily usage?"
                 answer="Absolutely. The QReels Parent Dashboard allows you to set precise daily time limits, scheduled downtime, and filter specific topics you'd like your child to focus on more."
               />
+            </div>
+          </div>
+        </Section>
+        {/* About Us / Founding Team */}
+        <Section id="about-us" className="bg-white">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full w-fit mb-6 mx-auto">
+              <Users className="w-4 h-4" />
+              <span className="text-xs font-bold uppercase tracking-wider">Our Story</span>
+            </div>
+            <h2 className="text-4xl font-black mb-4 text-slate-900">Meet Our Visionaries</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">The passionate team behind QReels, on a mission to make every minute of screen time count.</p>
+          </div>
+
+          {/* Slider */}
+          <div className="relative max-w-5xl mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.35 }}
+                className="grid md:grid-cols-2 gap-10 items-center bg-primary/5 rounded-3xl border border-primary/10 p-10 lg:p-14"
+              >
+                {/* Portrait */}
+                <div className="flex justify-center">
+                  <div className="relative">
+                    <div className="w-52 h-52 lg:w-64 lg:h-64 rounded-2xl bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center shadow-2xl shadow-primary/30">
+                      <span className="text-white font-black text-6xl tracking-tight">
+                        {founders[currentSlide].avatar}
+                      </span>
+                    </div>
+                    <div className="absolute -bottom-3 -right-3 bg-white border-2 border-primary/20 rounded-xl px-4 py-2 shadow-lg">
+                      <p className="text-xs font-bold text-primary">{founders[currentSlide].role}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="flex flex-col gap-6">
+                  <Quote className="w-10 h-10 text-primary/20" />
+                  <p className="text-xl lg:text-2xl font-semibold text-slate-700 leading-relaxed italic">
+                    "{founders[currentSlide].quote}"
+                  </p>
+                  <div>
+                    <p className="text-xl font-black text-slate-900">{founders[currentSlide].name}</p>
+                    <p className="text-sm text-primary font-semibold mt-1">{founders[currentSlide].role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Nav buttons */}
+            <div className="flex items-center justify-center gap-4 mt-8">
+              <button
+                onClick={prevSlide}
+                className="w-11 h-11 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all active:scale-95"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Dots */}
+              <div className="flex gap-2">
+                {founders.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? 'w-8 bg-primary' : 'w-2.5 bg-slate-200 hover:bg-slate-300'}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={nextSlide}
+                className="w-11 h-11 rounded-full border-2 border-slate-200 flex items-center justify-center text-slate-600 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all active:scale-95"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </Section>
@@ -488,20 +619,20 @@ export default function App() {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-slate-100 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-xs text-slate-500">© 2024 QReels Education Inc. All rights reserved.</p>
+            <p className="text-xs text-slate-500">© 2026 QReels Education Inc. All rights reserved.</p>
             <div className="flex gap-4">
               <div className="h-10 w-32 bg-slate-900 rounded-lg flex items-center justify-center border border-white/10 cursor-pointer hover:bg-slate-800 transition-colors">
                 <div className="flex items-center gap-2 px-3">
                   <Smartphone className="w-4 h-4 text-white" />
-                  <span className="text-[10px] text-white leading-tight">Download on the <br/><span className="font-bold text-sm">App Store</span></span>
+                  <span className="text-[10px] text-white leading-tight">Download on the <br /><span className="font-bold text-sm">App Store</span></span>
                 </div>
               </div>
               <div className="h-10 w-32 bg-slate-900 rounded-lg flex items-center justify-center border border-white/10 cursor-pointer hover:bg-slate-800 transition-colors">
                 <div className="flex items-center gap-2 px-3">
                   <PlayCircle className="w-4 h-4 text-white" />
-                  <span className="text-[10px] text-white leading-tight">GET IT ON <br/><span className="font-bold text-sm">Google Play</span></span>
+                  <span className="text-[10px] text-white leading-tight">GET IT ON <br /><span className="font-bold text-sm">Google Play</span></span>
                 </div>
               </div>
             </div>
