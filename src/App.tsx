@@ -121,6 +121,13 @@ const founders = [
     image: rahulImage
   },
   {
+    name: "Yogita Chouhan",
+    role: "Co-Founder & UI/UX Designer",
+    quote: "Crafting intuitive user experiences and beautiful interfaces that make learning fun and accessible for children.",
+    avatar: "YC",
+    image: yogitaImage
+  },
+  {
     name: "Varun Patidar",
     role: "Co-Founder & Frontend Lead",
     quote: "Building high-performance frontend architecture with React to ensure a smooth and engaging user experience.",
@@ -133,13 +140,6 @@ const founders = [
     quote: "Coordinating frontend development and ensuring high-quality UI implementation across the platform.",
     avatar: "CP",
     image: chandraImage
-  },
-  {
-    name: "Yogita Chouhan",
-    role: "Co-Founder & UI/UX Designer",
-    quote: "Crafting intuitive user experiences and beautiful interfaces that make learning fun and accessible for children.",
-    avatar: "YC",
-    image: yogitaImage
   }
 ];
 

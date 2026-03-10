@@ -12,6 +12,9 @@
 }
 
 @layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
   body {
     @apply font-display text-slate-900 bg-background-light;
   }
