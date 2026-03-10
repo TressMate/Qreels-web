@@ -165,6 +165,13 @@ export default function App() {
   const prevSlide = () => setCurrentSlide((p) => (p - 1 + founders.length) % founders.length);
   const nextSlide = () => setCurrentSlide((p) => (p + 1) % founders.length);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((p) => (p + 1) % founders.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background-light selection:bg-primary/20 selection:text-primary">
       {/* Header */}
@@ -531,14 +538,14 @@ export default function App() {
           </div>
 
           {/* Slider */}
-          <div className="relative max-w-5xl mx-auto">
-            <AnimatePresence mode="wait">
+          <div className="relative max-w-5xl mx-auto overflow-hidden">
+            <AnimatePresence mode="popLayout" initial={false}>
               <motion.div
                 key={currentSlide}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.35 }}
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ type: 'tween', ease: 'easeInOut', duration: 0.45 }}
                 className="grid md:grid-cols-2 gap-10 items-center bg-primary/5 rounded-3xl border border-primary/10 p-10 lg:p-14"
               >
                 {/* Portrait */}
