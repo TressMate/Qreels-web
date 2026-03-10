@@ -11,29 +11,55 @@ import {
   Upload,
   BarChart3,
   CircleDollarSign,
-  Smartphone,
   Sparkles,
   Award,
   Zap,
   Search,
   Menu,
   X,
-  Globe,
   Mail,
   VideoOff,
   AlertTriangle,
   Verified,
   Users,
-  HelpCircle,
   ChevronLeft,
   ChevronRight,
-  Quote
+  Quote,
+  BookOpen,
+  Flame,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import vijayImage from './assets/vijay_patidar.jpeg';
+import rahulImage from './assets/rahul.png';
+import  varunImage from './assets/varun.png';
+import chandraImage from './assets/chandraprakash.png';
+import yogitaImage from './assets/yogita.png';
+import { i } from 'motion/react-client';
+
+// Brand icons (inline SVGs — lucide-react deprecated brand icons in v0.5+)
+const InstagramIcon = ({ className = "" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
+
+const XIcon = ({ className = "" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const YoutubeIcon = ({ className = "" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+  </svg>
+);
 
 // Custom components for cleaner code
 const Section = ({ children, className = "", id = "" }: { children: React.ReactNode, className?: string, id?: string }) => (
-  <section id={id} className={`py-20 px-6 ${className}`}>
+  <section id={id} className={`py-10 px-6 ${className}`}>
     <div className="max-w-7xl mx-auto">
       {children}
     </div>
@@ -83,33 +109,46 @@ const founders = [
   {
     name: "Vijay Patidar",
     role: "Founder & CEO",
-    quote: "Driving the vision of QReels while building scalable systems that make learning engaging and meaningful for children.",
-    avatar: "VP"
+    quote: "We started QReels with a simple belief — if kids enjoy short videos, we can transform those moments into powerful learning experiences.",
+    avatar: "VP",
+    image: vijayImage,
   },
   {
     name: "Rahul Kushwah",
     role: "Co-Founder & Head of Backend Engineering",
     quote: "Designing powerful backend architecture, APIs, and AI-driven data systems that make QReels scalable and intelligent.",
-    avatar: "RK"
+    avatar: "RK",
+    image: rahulImage
   },
   {
     name: "Varun Patidar",
     role: "Co-Founder & Frontend Lead",
     quote: "Building high-performance frontend architecture with React to ensure a smooth and engaging user experience.",
-    avatar: "VP"
+    avatar: "VP",
+    image: varunImage
   },
   {
     name: "Chandra Prakash Kushwah",
     role: "Co-Founder & Frontend Manager",
     quote: "Coordinating frontend development and ensuring high-quality UI implementation across the platform.",
-    avatar: "CP"
+    avatar: "CP",
+    image: chandraImage
   },
   {
     name: "Yogita Chouhan",
     role: "Co-Founder & UI/UX Designer",
     quote: "Crafting intuitive user experiences and beautiful interfaces that make learning fun and accessible for children.",
-    avatar: "YC"
+    avatar: "YC",
+    image: yogitaImage
   }
+];
+
+const navItems = [
+  { label: 'Home', href: '#home' },
+  { label: 'Features', href: '#features' },
+  { label: 'Parents', href: '#parents' },
+  { label: 'Creators', href: '#creators' },
+  { label: 'About Us', href: '#about-us' },
 ];
 
 export default function App() {
@@ -132,20 +171,16 @@ export default function App() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-lg border-b border-slate-100 py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="bg-primary text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <PlayCircle className="w-6 h-6" />
-            </div>
+            <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="shadow-lg shadow-primary/20">
+              <rect width="100" height="100" rx="22" fill="#1e40af" />
+              <circle cx="46" cy="44" r="22" fill="none" stroke="white" strokeWidth="9" />
+              <polygon points="54,60 76,74 54,88" fill="white" />
+            </svg>
             <h1 className="text-2xl font-black tracking-tight text-primary">QReels</h1>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            {[
-              { label: 'Home', href: '#home' },
-              { label: 'Features', href: '#features' },
-              { label: 'Parents', href: '#parents' },
-              { label: 'Creators', href: '#creators' },
-              { label: 'About Us', href: '#about-us' },
-            ].map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
@@ -157,9 +192,9 @@ export default function App() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <button className="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-primary/20 transition-all active:scale-95">
-              Download App
-            </button>
+            <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold cursor-default select-none">
+              Coming Soon
+            </span>
           </div>
 
           <button
@@ -179,13 +214,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-100 p-6 flex flex-col gap-4 shadow-xl"
             >
-              {[
-                { label: 'Home', href: '#home' },
-                { label: 'Features', href: '#features' },
-                { label: 'Parents', href: '#parents' },
-                { label: 'Creators', href: '#creators' },
-                { label: 'About Us', href: '#about-us' },
-              ].map((item) => (
+              {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
@@ -195,9 +224,9 @@ export default function App() {
                   {item.label}
                 </a>
               ))}
-              <button className="bg-primary text-white px-6 py-3 rounded-full font-bold shadow-lg shadow-primary/20 mt-2">
-                Download App
-              </button>
+              <span className="bg-primary/10 text-primary px-4 py-2.5 rounded-full text-sm font-bold cursor-default select-none text-center mt-2">
+                Coming Soon
+              </span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -205,89 +234,52 @@ export default function App() {
 
       <main>
         {/* Hero Section */}
-        <Section id="home" className="pt-32 lg:pt-48 overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-col gap-8"
-            >
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full w-fit">
-                <Sparkles className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">Education Evolved</span>
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight text-slate-900">
-                Transform Screen Time Into <span className="text-primary">Learning</span>
-              </h1>
-              <p className="text-lg lg:text-xl text-slate-600 leading-relaxed max-w-xl">
-                QReels is a safe and engaging short-video platform where children discover science, creativity, logic, and life skills through 60-second educational reels.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button className="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-primary/40 hover:scale-105 transition-all duration-300 active:scale-95">
-                  Download the App
-                </button>
-                <button className="bg-white border-2 border-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:border-primary hover:text-primary transition-all duration-300 active:scale-95">
-                  Become a Creator
-                </button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl"></div>
-              <div className="relative mx-auto w-full max-w-[320px] aspect-[9/19.5] bg-slate-900 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzfJOpDIyJf0QNZeSY4xqoJm0w1wAPRayqd70hhyOSy1W7657MVWpFSjE53IPeu0bzuL6pTHBqPINCM4pfAduoOj1fNW2ioEJgz8Id4k72tExc7D8BwG484ZsfqDVVyhWeYF1kFo39vS9BxE0mSCNXaPLR8kJKpeS4nUc4hhj3q6Dxd3i7KEEGXYW8RLgo3DwaBezDdvC9jhAtKSnXTq3_VGQY2qVEZqbpYYTQYOL0XhpgnRk3_ZZv3ZOwAJuhtcz8BPwSoEnQ5tQ')" }}
-                ></div>
-
-                {/* Floating UI Elements */}
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute bottom-10 left-4 right-4 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="bg-green-100 p-2 rounded-lg text-green-600">
-                      <HelpCircle className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900">Mini-Quiz Active</p>
-                      <p className="text-[10px] text-slate-500">What makes the sky blue?</p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 1.5, duration: 0.5 }}
-                  className="absolute top-20 right-4 bg-primary text-white p-3 rounded-xl shadow-lg"
-                >
-                  <Trophy className="w-6 h-6" />
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+        <Section id="home" className="pt-32 lg:pt-44 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center gap-6 max-w-3xl mx-auto"
+          >
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
+              <span className="text-xs font-bold uppercase tracking-wider">🚀 Launching Soon</span>
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight text-slate-900">
+              Turn Screen Time Into <span className="text-primary">Learning Time</span>
+            </h1>
+            <p className="text-lg lg:text-xl text-slate-500 leading-relaxed max-w-xl">
+              Short curiosity-driven learning reels designed for kids.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mt-2">
+              <a
+                href="https://instagram.com/qreels_01"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-primary/30 hover:scale-105 transition-all duration-300 active:scale-95"
+              >
+                Follow Updates
+              </a>
+              <a
+                href="#features"
+                className="bg-white border-2 border-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:border-primary hover:text-primary transition-all duration-300 active:scale-95"
+              >
+                See How It Works
+              </a>
+            </div>
+          </motion.div>
         </Section>
 
         {/* Problem Section */}
         <Section className="bg-slate-50/50">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black mb-4 text-slate-900">The Problem With Kids’ Screen Time</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-black mb-4 text-slate-900">The Problem With Today's Screen Time</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">Traditional social media isn't built for young, developing minds.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: AlertTriangle, title: "Random Content", desc: "Kids watch uncurated, often inappropriate videos through algorithms built for adults." },
-              { icon: VideoOff, title: "Low Educational Value", desc: "Hours of scrolling result in zero new skills or knowledge gained." },
-              { icon: Timer, title: "Too Much Screen Time", desc: "Addictive loops lead to excessive usage without clear stopping points." },
+              { icon: AlertTriangle, title: "Random Content", desc: "Kids spend hours watching short videos with no clear purpose or benefit." },
+              { icon: VideoOff, title: "Pure Entertainment", desc: "Most content is pure entertainment — very little learning actually happens." },
+              { icon: Timer, title: "No Knowledge Gained", desc: "Hours of scrolling result in zero new skills or knowledge retained." },
               { icon: Shield, title: "Parents Lack Control", desc: "It's nearly impossible to monitor every second of your child's scrolling." }
             ].map((item, i) => (
               <Card key={i}>
@@ -302,9 +294,9 @@ export default function App() {
         {/* Solution Section */}
         <Section>
           <div className="flex flex-col items-center">
-            <div className="text-center max-w-3xl mb-16">
-              <h2 className="text-4xl font-black mb-6 text-slate-900">Introducing QReels</h2>
-              <p className="text-xl text-slate-600">We convert addictive scrolling into active learning through curated, short-form educational content.</p>
+            <div className="text-center max-w-3xl mb-8">
+              <h2 className="text-4xl font-black mb-6 text-slate-900">Meet QReels</h2>
+              <p className="text-xl text-slate-600">QReels converts short video sessions into short learning experiences — one reel, one topic, one new thing learned.</p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 w-full">
               <motion.div
@@ -337,13 +329,13 @@ export default function App() {
 
         {/* How It Works */}
         <Section id="features" className="bg-white">
-          <h2 className="text-4xl font-black mb-20 text-center text-slate-900">How It Works</h2>
+          <h2 className="text-4xl font-black mb-10 text-center text-slate-900">How QReels Works</h2>
           <div className="relative flex flex-col md:flex-row justify-between items-center gap-12">
             <div className="hidden md:block absolute top-12 left-0 right-0 h-1 bg-primary/10 -z-10"></div>
             {[
-              { icon: PlayCircle, title: "1. Watch", desc: "Engage with high-quality, 60-second reels that make learning fun and quick." },
-              { icon: HelpCircle, title: "2. Interact", desc: "Complete a mini 3-question quiz after every video to reinforce knowledge." },
-              { icon: Trophy, title: "3. Grow", desc: "Earn badges, XP, and build your knowledge streak to unlock new topics." }
+              { icon: Search, title: "1. Discover", desc: "Browse topics that spark curiosity — from science and space to history and life skills." },
+              { icon: PlayCircle, title: "2. Watch", desc: "Watch engaging 60-second reels crafted to make learning fun and memorable." },
+              { icon: Trophy, title: "3. Achieve", desc: "Build daily streaks and earn achievements that celebrate your learning journey." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -363,7 +355,36 @@ export default function App() {
           </div>
         </Section>
 
-        {/* Parent Control Section */}
+        {/* Features Coming Soon */}
+        <Section id="coming-soon" className="bg-slate-50/50">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-black mb-4 text-slate-900">Features Coming Soon</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">We're building something special. Here's a peek at what's on the way.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: BookOpen, title: "Topic Based Learning", desc: "Deep-dive into subjects you love. Choose from science, space, history, maths, and more." },
+              { icon: Flame, title: "Daily Learning Streak", desc: "Build consistent habits by keeping your daily learning streak alive." },
+              { icon: Award, title: "Achievements & Badges", desc: "Unlock badges and earn rewards as you complete topics and hit milestones." },
+              { icon: Search, title: "Skill Discovery", desc: "Let the app guide you toward new skills based on your interests and curiosity." },
+              { icon: Sparkles, title: "Curiosity Based Recommendations", desc: "A personalised feed that adapts to what sparks your child's imagination." },
+              { icon: BarChart3, title: "Smart Parental Insights", desc: "Parents can track their child's learning activity and progress through simple insights and learning summaries." },
+            ].map((feature, i) => (
+              <Card key={i} className="flex flex-col gap-4">
+                <div className="flex items-start justify-between">
+                  <div className="bg-primary/10 p-3 rounded-xl">
+                    <feature.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">Coming Soon</span>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">{feature.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{feature.desc}</p>
+              </Card>
+            ))}
+          </div>
+        </Section>
+
+        {/* Parent Benefits Section */}
         <Section id="parents">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1">
@@ -386,16 +407,17 @@ export default function App() {
               </div>
             </div>
             <div className="order-1 lg:order-2 flex flex-col gap-6">
-              <h2 className="text-4xl font-black leading-tight text-slate-900">Parents Stay in Control</h2>
+              <h2 className="text-4xl font-black leading-tight text-slate-900">Screen Time Parents Can Feel Good About</h2>
               <p className="text-lg text-slate-600">QReels is designed to be a partner in your parenting journey. We provide all the tools you need to ensure their digital life is healthy and productive.</p>
               <ul className="space-y-4">
                 {[
-                  "COPPA & GDPR Compliant",
-                  "No behavioral advertising",
-                  "Real-time alerts via Parent App"
+                  "Educational content, every single reel",
+                  "Kid-safe environment, no public comments",
+                  "Curiosity-driven learning, not addictive loops",
+                  "No behavioral advertising"
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-green-500" />
+                    <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0" />
                     <span className="font-medium text-slate-700">{item}</span>
                   </li>
                 ))}
@@ -496,9 +518,10 @@ export default function App() {
             </div>
           </div>
         </Section>
+
         {/* About Us / Founding Team */}
         <Section id="about-us" className="bg-white">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full w-fit mb-6 mx-auto">
               <Users className="w-4 h-4" />
               <span className="text-xs font-bold uppercase tracking-wider">Our Story</span>
@@ -521,10 +544,18 @@ export default function App() {
                 {/* Portrait */}
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="w-52 h-52 lg:w-64 lg:h-64 rounded-2xl bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center shadow-2xl shadow-primary/30">
-                      <span className="text-white font-black text-6xl tracking-tight">
-                        {founders[currentSlide].avatar}
-                      </span>
+                    <div className="w-52 h-52 lg:w-64 lg:h-64 rounded-2xl bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center shadow-2xl shadow-primary/30 overflow-hidden">
+                      {founders[currentSlide].image ? (
+                        <img
+                          src={founders[currentSlide].image}
+                          alt={founders[currentSlide].name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-white font-black text-6xl tracking-tight">
+                          {founders[currentSlide].avatar}
+                        </span>
+                      )}
                     </div>
                     <div className="absolute -bottom-3 -right-3 bg-white border-2 border-primary/20 rounded-xl px-4 py-2 shadow-lg">
                       <p className="text-xs font-bold text-primary">{founders[currentSlide].role}</p>
@@ -575,12 +606,61 @@ export default function App() {
             </div>
           </div>
         </Section>
+
+        {/* Final CTA Section */}
+        <Section className="bg-background-light">
+          <div className="bg-gradient-to-br from-primary to-blue-900 rounded-[3rem] p-12 lg:p-20 text-white text-center overflow-hidden relative shadow-2xl">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-slate-900/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+            <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-8">
+              <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">Coming Soon</span>
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-black leading-tight">
+                Be Among The First To Discover QReels
+              </h2>
+              <p className="text-xl text-white/80 max-w-xl">
+                The app is coming soon. Follow us to get early access and stay updated on our launch.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href="https://instagram.com/qreels_01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-white/90 transition-all active:scale-95 shadow-lg"
+                >
+                  <InstagramIcon className="w-5 h-5" />
+                  Follow on Instagram
+                </a>
+                <a
+                  href="https://x.com/qreels_01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                >
+                  <XIcon className="w-5 h-5" />
+                  Follow on X
+                </a>
+                <a
+                  href="https://youtube.com/@qreels_01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                >
+                  <YoutubeIcon className="w-5 h-5" />
+                  Subscribe on YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+        </Section>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white pt-20 pb-10 border-t border-slate-100">
+      <footer className="bg-white pt-10 pb-6 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
+          <div className="grid md:grid-cols-4 gap-12 mb-8">
             <div className="col-span-2">
               <div className="flex items-center gap-2 mb-6">
                 <div className="bg-primary text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
@@ -591,51 +671,43 @@ export default function App() {
               <p className="text-slate-600 max-w-sm mb-8">
                 The educational short-video platform built for the curious minds of tomorrow.
               </p>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all">
-                  <Globe className="w-5 h-5" />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all">
+              <div className="flex gap-3">
+                <a href="mailto:qreelsupport@gmail.com" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
                   <Mail className="w-5 h-5" />
-                </div>
+                </a>
+                <a href="https://instagram.com/qreels_01" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                  <InstagramIcon className="w-5 h-5" />
+                </a>
+                <a href="https://x.com/qreels_01" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                  <XIcon className="w-5 h-5" />
+                </a>
+                <a href="https://youtube.com/@qreels_01" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                  <YoutubeIcon className="w-5 h-5" />
+                </a>
               </div>
             </div>
             <div>
               <h4 className="font-bold mb-6 text-slate-900">Platform</h4>
               <ul className="space-y-4 text-sm text-slate-600">
-                <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Creator Program</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Safety Center</a></li>
+                <li><a href="#about-us" className="hover:text-primary transition-colors">About Us</a></li>
+                <li><a href="#features" className="hover:text-primary transition-colors">Features</a></li>
+                <li><a href="#creators" className="hover:text-primary transition-colors">Creator Program</a></li>
+                <li><a href="#parents" className="hover:text-primary transition-colors">Safety Center</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-6 text-slate-900">Resources</h4>
+              <h4 className="font-bold mb-6 text-slate-900">Connect</h4>
               <ul className="space-y-4 text-sm text-slate-600">
-                <li><a href="#" className="hover:text-primary transition-colors">Parent Guide</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">FAQ</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
+                <li><a href="mailto:qreelsupport@gmail.com" className="hover:text-primary transition-colors">Email Us</a></li>
+                <li><a href="https://instagram.com/qreels_01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a></li>
+                <li><a href="https://x.com/qreels_01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">X (Twitter)</a></li>
+                <li><a href="https://youtube.com/@qreels_01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-slate-100 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-xs text-slate-500">© 2026 QReels Education Inc. All rights reserved.</p>
-            <div className="flex gap-4">
-              <div className="h-10 w-32 bg-slate-900 rounded-lg flex items-center justify-center border border-white/10 cursor-pointer hover:bg-slate-800 transition-colors">
-                <div className="flex items-center gap-2 px-3">
-                  <Smartphone className="w-4 h-4 text-white" />
-                  <span className="text-[10px] text-white leading-tight">Download on the <br /><span className="font-bold text-sm">App Store</span></span>
-                </div>
-              </div>
-              <div className="h-10 w-32 bg-slate-900 rounded-lg flex items-center justify-center border border-white/10 cursor-pointer hover:bg-slate-800 transition-colors">
-                <div className="flex items-center gap-2 px-3">
-                  <PlayCircle className="w-4 h-4 text-white" />
-                  <span className="text-[10px] text-white leading-tight">GET IT ON <br /><span className="font-bold text-sm">Google Play</span></span>
-                </div>
-              </div>
-            </div>
+          <div className="border-t border-slate-100 pt-10">
+            <p className="text-xs text-slate-500 text-center md:text-left">© 2026 QReels Education Inc. All rights reserved.</p>
           </div>
         </div>
       </footer>
