@@ -670,9 +670,11 @@ export default function App() {
           <div className="grid md:grid-cols-4 gap-12 mb-8">
             <div className="col-span-2">
               <div className="flex items-center gap-2 mb-6">
-                <div className="bg-primary text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                  <PlayCircle className="w-6 h-6" />
-                </div>
+                <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="shadow-lg shadow-primary/20">
+                  <rect width="100" height="100" rx="22" fill="#1e40af" />
+                  <circle cx="46" cy="44" r="22" fill="none" stroke="white" strokeWidth="9" />
+                  <polygon points="54,60 76,74 54,88" fill="white" />
+                </svg>
                 <h2 className="text-2xl font-black text-primary">QReels</h2>
               </div>
               <p className="text-slate-600 max-w-sm mb-8">
