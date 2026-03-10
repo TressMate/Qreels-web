@@ -630,12 +630,12 @@ export default function App() {
               <p className="text-xl text-white/80 max-w-xl">
                 The app is coming soon. Follow us to get early access and stay updated on our launch.
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4 w-full">
                 <a
                   href="https://instagram.com/qreels_01"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-white/90 transition-all active:scale-95 shadow-lg"
+                  className="flex items-center justify-center gap-2 bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-white/90 transition-all active:scale-95 shadow-lg w-full sm:w-auto"
                 >
                   <InstagramIcon className="w-5 h-5" />
                   Follow on Instagram
@@ -644,7 +644,7 @@ export default function App() {
                   href="https://x.com/qreels_01"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                  className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95 w-full sm:w-auto"
                 >
                   <XIcon className="w-5 h-5" />
                   Follow on X
@@ -653,7 +653,7 @@ export default function App() {
                   href="https://youtube.com/@qreels_01"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                  className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95 w-full sm:w-auto"
                 >
                   <YoutubeIcon className="w-5 h-5" />
                   Subscribe on YouTube
