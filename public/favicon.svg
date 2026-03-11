@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Blue rounded background -->
   <rect width="100" height="100" rx="22" fill="#1e40af"/>
-  <circle cx="46" cy="44" r="22" fill="none" stroke="white" stroke-width="9"/>
+  <!-- Q ring: white filled outer circle -->
+  <circle cx="46" cy="44" r="26" fill="white"/>
+  <!-- Q ring: blue filled inner circle (punches out the ring) -->
+  <circle cx="46" cy="44" r="17" fill="#1e40af"/>
+  <!-- Q tail: white triangle (play button style) -->
   <polygon points="54,60 76,74 54,88" fill="white"/>
 </svg>
