@@ -52,6 +52,12 @@ const YoutubeIcon = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
+const LinkedInIcon = ({ className = "" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
 // Custom components for cleaner code
 const Section = ({ children, className = "", id = "" }: { children: React.ReactNode, className?: string, id?: string }) => (
   <section id={id} className={`py-10 px-6 ${className}`}>
@@ -613,34 +619,46 @@ export default function App() {
               <p className="text-xl text-white/80 max-w-xl">
                 The app is coming soon. Follow us to get early access and stay updated on our launch.
               </p>
-              <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4 w-full">
-                <a
-                  href="https://instagram.com/qreels_01"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-white/90 transition-all active:scale-95 shadow-lg w-full sm:w-auto"
-                >
-                  <InstagramIcon className="w-5 h-5" />
-                  Follow on Instagram
-                </a>
-                <a
-                  href="https://x.com/qreels_01"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95 w-full sm:w-auto"
-                >
-                  <XIcon className="w-5 h-5" />
-                  Follow on X
-                </a>
-                <a
-                  href="https://youtube.com/@qreels_01"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95 w-full sm:w-auto"
-                >
-                  <YoutubeIcon className="w-5 h-5" />
-                  Subscribe on YouTube
-                </a>
+              <div className="flex flex-col items-center gap-3 w-full">
+                <p className="text-sm font-semibold text-white/60 uppercase tracking-widest">Follow us on</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-2xl lg:max-w-none">
+                  <a
+                    href="https://instagram.com/qreels_01"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-white text-primary px-6 py-3 rounded-full font-bold hover:bg-white/90 transition-all active:scale-95 shadow-lg"
+                  >
+                    <InstagramIcon className="w-5 h-5" />
+                    Instagram
+                  </a>
+                  <a
+                    href="https://x.com/qreels_01"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                  >
+                    <XIcon className="w-5 h-5" />
+                    X (Twitter)
+                  </a>
+                  <a
+                    href="https://youtube.com/@qreels_01"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                  >
+                    <YoutubeIcon className="w-5 h-5" />
+                    YouTube
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/qreels/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-full font-bold hover:bg-white/20 transition-all active:scale-95"
+                  >
+                    <LinkedInIcon className="w-5 h-5" />
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -676,6 +694,9 @@ export default function App() {
                 <a href="https://youtube.com/@qreels_01" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
                   <YoutubeIcon className="w-5 h-5" />
                 </a>
+                <a href="https://www.linkedin.com/company/qreels/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                  <LinkedInIcon className="w-5 h-5" />
+                </a>
               </div>
             </div>
             <div>
@@ -694,6 +715,7 @@ export default function App() {
                 <li><a href="https://instagram.com/qreels_01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a></li>
                 <li><a href="https://x.com/qreels_01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">X (Twitter)</a></li>
                 <li><a href="https://youtube.com/@qreels_01" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a></li>
+                <li><a href="https://www.linkedin.com/company/qreels/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a></li>
               </ul>
             </div>
           </div>
