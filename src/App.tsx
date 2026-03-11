@@ -29,11 +29,6 @@ import {
   Flame,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import vijayImage from './assets/vijay_patidar.jpeg';
-import rahulImage from './assets/rahul.png';
-import  varunImage from './assets/varun.png';
-import chandraImage from './assets/chandraprakash.png';
-import yogitaImage from './assets/yogita.png';
 import { i } from 'motion/react-client';
 
 // Brand icons (inline SVGs — lucide-react deprecated brand icons in v0.5+)
@@ -107,39 +102,34 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 
 const founders = [
   {
-    name: "Vijay Patidar",
+    name: "Vijay",
     role: "Founder & CEO",
     quote: "We started QReels with a simple belief — if kids enjoy short videos, we can transform those moments into powerful learning experiences.",
-    avatar: "VP",
-    image: vijayImage,
+    avatar: "V",
   },
   {
-    name: "Rahul Kushwah",
+    name: "Rahul",
     role: "Co-Founder & Head of Backend Engineering",
     quote: "Designing powerful backend architecture, APIs, and AI-driven data systems that make QReels scalable and intelligent.",
-    avatar: "RK",
-    image: rahulImage
+    avatar: "R",
   },
   {
-    name: "Yogita Chouhan",
+    name: "Yogita",
     role: "Co-Founder & UI/UX Designer",
     quote: "Crafting intuitive user experiences and beautiful interfaces that make learning fun and accessible for children.",
-    avatar: "YC",
-    image: yogitaImage
+    avatar: "Y",
   },
   {
-    name: "Varun Patidar",
+    name: "Varun",
     role: "Co-Founder & Frontend Lead",
     quote: "Building high-performance frontend architecture with React to ensure a smooth and engaging user experience.",
-    avatar: "VP",
-    image: varunImage
+    avatar: "V",
   },
   {
-    name: "Chandra Prakash Kushwah",
+    name: "Chandra",
     role: "Co-Founder & Frontend Manager",
     quote: "Coordinating frontend development and ensuring high-quality UI implementation across the platform.",
-    avatar: "CP",
-    image: chandraImage
+    avatar: "C",
   }
 ];
 
@@ -552,18 +542,10 @@ export default function App() {
                 {/* Portrait */}
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="w-52 h-52 lg:w-64 lg:h-64 rounded-2xl bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center shadow-2xl shadow-primary/30 overflow-hidden">
-                      {founders[currentSlide].image ? (
-                        <img
-                          src={founders[currentSlide].image}
-                          alt={founders[currentSlide].name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-white font-black text-6xl tracking-tight">
-                          {founders[currentSlide].avatar}
-                        </span>
-                      )}
+                    <div className="w-52 h-52 lg:w-64 lg:h-64 rounded-2xl bg-gradient-to-br from-primary to-blue-900 flex items-center justify-center shadow-2xl shadow-primary/30">
+                      <span className="text-white font-black text-7xl tracking-tight">
+                        {founders[currentSlide].avatar}
+                      </span>
                     </div>
                     <div className="absolute -bottom-3 -right-3 bg-white border-2 border-primary/20 rounded-xl px-4 py-2 shadow-lg">
                       <p className="text-xs font-bold text-primary">{founders[currentSlide].role}</p>
