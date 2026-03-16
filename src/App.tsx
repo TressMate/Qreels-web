@@ -1007,7 +1007,7 @@ export default function App() {
                   "We started QReels with a simple belief — if kids enjoy short videos, we can transform those moments into powerful learning experiences."
                 </p>
                 <div>
-                  <p className="text-lg font-black text-slate-900">Vijay Patidar</p>
+                  <p className="text-lg font-black text-slate-900">Anshul Patidar</p>
                   <p className="text-sm text-[#1e40af] font-semibold mt-1">Founder & CEO</p>
                 </div>
               </div>
