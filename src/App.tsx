@@ -993,7 +993,7 @@ export default function App() {
               <div className="flex justify-center">
                 <div className="relative">
                   <div className="w-52 h-52 lg:w-64 lg:h-64 rounded-2xl bg-gradient-to-br from-[#1e40af] to-blue-900 flex items-center justify-center shadow-2xl shadow-blue-900/20">
-                    <span className="text-white font-black text-7xl tracking-tight">V</span>
+                    <span className="text-white font-black text-7xl tracking-tight">A</span>
                   </div>
                   <div className="absolute -bottom-3 -right-3 bg-white border border-slate-100 rounded-xl px-4 py-2 shadow-md">
                     <p className="text-xs font-bold text-[#1e40af]">Founder & CEO</p>
